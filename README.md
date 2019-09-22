@@ -1,2 +1,7 @@
 # nodejs
-cours sur node js
+
+npm install 
+
+db.js {
+host name: "",
+port : '',
