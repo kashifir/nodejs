@@ -12,7 +12,7 @@ const express = require("express");
  * Route definition takes the following structure:
  * client.METHOD (PATH, HANDLER)
  *
- *  GET : The GET method requests a representation of the specified resource. Requests using GET should only retrieve data and should have no other effect. (This is also true of some other HTTP methods.)[1] The W3C has published guidance principles on this distinction, saying, "Web application design should be informed by the above principles, but also by the relevant limitations."[22] See safe methods below.
+ * GET : The GET method requests a representation of the specified resource. Requests using GET should only retrieve data and should have no other effect. (This is also true of some other HTTP methods.)[1] The W3C has published guidance principles on this distinction, saying, "Web application design should be informed by the above principles, but also by the relevant limitations."[22] See safe methods below.
  * HEAD : The HEAD method asks for a response identical to that of a GET request, but without the response body. This is useful for retrieving meta-information written in response headers, without having to transport the entire content.
  * POST : The POST method requests that the server accept the entity enclosed in the request as a new subordinate of the web resource identified by the URI. The data POSTed might be, for example, an annotation for existing resources; a message for a bulletin board, newsgroup, mailing list, or comment thread; a block of data that is the result of submitting a web form to a data-handling process; or an item to add to a database.[23]
  * PUT : The PUT method requests that the enclosed entity be stored under the supplied URI. If the URI refers to an already existing resource, it is modified; if the URI does not point to an existing resource, then the server can create the resource with that URI.[24]
@@ -307,9 +307,9 @@ client.put("/update/:id", (req, res) => {
         where: {id: req.params.id}
     })
     // if this clients allready in your database then update
-        .then(() => {
+        .then(client => {
             // make update client with body and id parmas
-            db.client.update(
+            client.update(
                 {
                     nom: req.body.nom,
                     prenom: req.body.prenom,
@@ -317,24 +317,13 @@ client.put("/update/:id", (req, res) => {
                     tel: req.body.tel
                 },
                 {
-                    where: {id: req.params.id},
                     returning: true,
                     plain: true
                 })
             //
-                .then(() => {
-                    // then find this you upadate to get back new data of your clients whit
-                    db.client.findOne({
-                        where: {id: req.params.id}
-                    })
-                        .then(client => {
-                            res.send(client);
-                        })
-                        .catch(err => {
-                            res.json({
-                                error: "error" + err
-                            })
-                        })
+                .then(client => {
+                    // then find this you upadate to get back new data of your clients with new data
+                    res.json(client);
                 })
                 .catch(err => {
                     res.json("error" + err)
@@ -349,12 +338,12 @@ client.put("/update/:id", (req, res) => {
 
 // delete  one client
 client.delete("/delete/:id", (req, res) => {
-    //find one client where id = is
+    //find one client where id = id
     db.client.findOne({
         where: {id: req.params.id}
     })
     // then get var client
-        .then((client) => {
+        .then(client => {
             // if not client
             if (!client) {
                 // send back error message error

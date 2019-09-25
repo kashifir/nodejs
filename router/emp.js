@@ -44,10 +44,8 @@ emp.post("/register", (req, res) => {
         password: req.body.password,
         competences: req.body.competences,
         poste: req.body.poste,
-        garageId: 1,
-        atelierId: 1,
-
-
+        garageId: req.body.garageId,
+        atelierId: req.body.atelierId,
     };
     // find if user existe  or not
     // select * from tbl_user where email = 'toto@toto.fr'
@@ -82,7 +80,6 @@ emp.post("/register", (req, res) => {
         })
 
 });
-
 // login
 emp.post("/login", (req, res) => {
     db.emp.findOne({
@@ -247,6 +244,22 @@ emp.get("/Find/:email", (req,res) =>{
             res.json("error" + err);
         })
 });
+
+
+// findAll  emp
+emp.get("/All", (req,res) =>{
+    // find the employe by email
+    db.emp.findAll().
+    then(emps =>{
+        res.json(emps)
+    })
+        .catch(err =>{
+            // send back the message error
+            res.json("error" + err);
+        })
+});
+
+
 
 module.exports = emp;
 

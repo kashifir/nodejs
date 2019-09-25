@@ -2,7 +2,7 @@
  *****************************************************************************************************************/
 
 /**
- *Express.js
+ * Express.js
  * is a framework for building web applications based on Node.js.
  * This is the standard framework for server development in Node.js.
  **/
@@ -11,8 +11,8 @@ const express = require("express");
 
 /**
  * Node.js body parsing middleware.
- *Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
- *Note As req.body's shape is based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, req.body.foo.toString() may fail in multiple ways, for example the foo property may not be there or may not be a string, and toString may not be a function and instead a string or other user input.
+ * Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
+ * Note As req.body's shape is based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting. For example, req.body.foo.toString() may fail in multiple ways, for example the foo property may not be there or may not be a string, and toString may not be a function and instead a string or other user input.
  * @type {Parsers}
  */
 const bodyParser = require("body-parser");
@@ -22,6 +22,8 @@ const client = require("./router/client");
 const pieces = require("./router/piece");
 const voiture = require("./router/voiture");
 const emp = require("./router/emp");
+const garage = require("./router/garage");
+const atelier = require("./router/atelier");
 
 // require cors
 
@@ -57,7 +59,6 @@ const cors = require("cors");
 
 /** that the  port where you can call to use you server in local **/
 
-
 const port = process.env.PORT || 3000;
 
 // app = express
@@ -77,10 +78,13 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 // we will then prixfix for our routes
 // we will call every route  we need in this app here
+
 app.use("/client", client);
 app.use("/pieces", pieces);
 app.use("/voiture", voiture);
 app.use("/emp", emp);
+app.use('/garage', garage)
+app.use('/atelier', atelier)
 
 
 // we say our app to start listen in the port and send back to us the msg with port info

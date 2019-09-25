@@ -171,6 +171,28 @@ atelier.get("/Find/:garageId", (req,res) =>{
         })
 });
 
+// find by email atelier
+atelier.get("/FindAll", (req,res) =>{
+    // find the atelier by garageId
+    db.atelier.findAll({
+    }).then(atelier =>{
+        // if pieces exist so
+        if(atelier) {
+            res.json({
+                atelier: atelier
+            })
+        }
+        else {
+            // send back this atelier it not exist in your database
+            res.json({error : "This atelier  exist in you list of atelier"})
+        }
+    })
+        .catch(err =>{
+            // send back the message error
+            res.json("error" + err);
+        })
+});
+
 module.exports = atelier;
 
 /************************************** end router module ****************************************************
