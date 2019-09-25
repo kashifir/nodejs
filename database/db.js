@@ -48,8 +48,7 @@ const dbinfo = new Sequelize("garager","root","root",{
     }
 
 });
-dbinfo
-    .authenticate()
+dbinfo.authenticate()
     .then(() => {
         console.log('Connection has been established successfully.');
     })
@@ -111,9 +110,10 @@ db.typereparation = require('../models/TypeReparation')(dbinfo, Sequelize);
  *  the garage can have Many atelier : atelier: 1,1  garage : 1,N
  */
 db.garage.hasMany(db.atelier,{foreignKey: "garageId"});
+
 db.atelier.hasOne(db.emp,{foreignKey: "atelierId"});
 
-// this voiture ae this client
+// this voiture has this client
 db.client.hasMany(db.voiture,{foreignKey: "clientId"});
 db.voiture.belongsTo(db.client,{foreignKey: "clientId"});
 
