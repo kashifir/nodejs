@@ -43,8 +43,7 @@ const dbinfo = new Sequelize("test","kashif95","Kashif1512",{
     pool:{
         max:5,
         min:0,
-        acquire: 30000,
-        idle: 10000,
+      
     }
 
 });
