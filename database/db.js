@@ -35,10 +35,10 @@ const db ={};
  * @type {Sequelize}
  */
 
-const dbinfo = new Sequelize("garager","root","root",{
+const dbinfo = new Sequelize("test","kashif_7913","YGVmG7jnogBV85nvhNM0",{
     host: "localhost",
     dialect: "mysql",
-    port: 3306,
+    port: 31626,
     operatorsAliases: false,
     pool:{
         max:5,
