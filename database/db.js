@@ -36,7 +36,7 @@ const db ={};
  */
 
 const dbinfo = new Sequelize("test","kashif_7913","YGVmG7jnogBV85nvhNM0",{
-    host: "localhost",
+    host: "ca0c62d7-5a74-44a1-b708-f926b1c40312.kashif-7913.mysql.dbs.scalingo.com",
     dialect: "mysql",
     port: 31626,
     operatorsAliases: false,
