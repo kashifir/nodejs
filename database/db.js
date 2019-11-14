@@ -35,15 +35,16 @@ const db ={};
  * @type {Sequelize}
  */
 
-const dbinfo = new Sequelize("test","kashif-7913","YGVmG7jnogBV85nvhNM0",{
-    host: "ca0c62d7-5a74-44a1-b708-f926b1c40312.kashif-7913.mysql.dbs.scalingo.com",
+const dbinfo = new Sequelize("db","username","password",{
+    host: "localhost",
     dialect: "mysql",
-    port: 31626,
+    port: 3306,
     operatorsAliases: false,
     pool:{
         max:5,
         min:0,
-      
+        acquire: 30000,
+        idle: 10000,s
     }
 
 });
