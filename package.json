@@ -17,6 +17,6 @@
     "nodemon": "1.18.4",
     "bcrypt": "^3.0.6",
     "jsonwebtoken": "7.4.2",
-    "sequelize": "4.38.0"
+    "sequelize": "5.15.1"
   }
 }
