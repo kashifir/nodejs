@@ -10,9 +10,9 @@
   "author": "kashif",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "1.15.2",
+    "body-parser": "1.20.1",
     "cors": "2.8.4",
-    "express": "4.14.0",
+    "express": "4.18.2",
     "mysql2": "^1.6.1",
     "nodemon": "1.18.4",
     "bcrypt": "^3.0.6",
