@@ -16,7 +16,7 @@
     "mysql2": "^1.6.1",
     "nodemon": "1.18.4",
     "bcrypt": "^3.0.6",
-    "jsonwebtoken": "7.4.2",
+    "jsonwebtoken": "9.0.0",
     "sequelize": "4.38.0"
   }
 }
